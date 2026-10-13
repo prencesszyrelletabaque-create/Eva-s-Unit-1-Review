@@ -1,0 +1,565 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Eva's Unit 1 Review</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Nunito:wght@400;600;700;800&display=swap">
+<style>
+/* Layout: one narrow worksheet column. Each activity is a single card of question rows.
+   A fixed bottom bar holds the one main action (check / redo / start again). */
+:root{
+  --bg:#EEF2FA; --card:#FFFFFF; --ink:#18213D; --muted:#56617F; --line:#D5DCEC;
+  --accent:#2D55E0; --accent-ink:#FFFFFF; --accent-soft:#E3EAFE;
+  --hl:#FFD84D;
+  --ok:#157A4B; --ok-soft:#DDF3E7; --ok-wash:#F0FAF4;
+  --bad:#C23A32; --bad-soft:#FBE3E1; --bad-wash:#FDF2F1;
+  --redo-wash:#FFF8DD;
+  --font-display:'Bricolage Grotesque','Trebuchet MS',system-ui,sans-serif;
+  --font-body:'Nunito','Segoe UI',system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0E1426; --card:#171F38; --ink:#E9EDFA; --muted:#9BA6C8; --line:#2C3659;
+    --accent:#8FAAFF; --accent-ink:#0E1426; --accent-soft:#222E5A;
+    --hl:#7A6400;
+    --ok:#5CD59A; --ok-soft:#173A2B; --ok-wash:#132A22;
+    --bad:#FF8A82; --bad-soft:#44201F; --bad-wash:#2A1A22;
+    --redo-wash:#2B2A14;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0E1426; --card:#171F38; --ink:#E9EDFA; --muted:#9BA6C8; --line:#2C3659;
+  --accent:#8FAAFF; --accent-ink:#0E1426; --accent-soft:#222E5A;
+  --hl:#7A6400;
+  --ok:#5CD59A; --ok-soft:#173A2B; --ok-wash:#132A22;
+  --bad:#FF8A82; --bad-soft:#44201F; --bad-wash:#2A1A22;
+  --redo-wash:#2B2A14;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:16px;line-height:1.5;padding-inline:16px;padding-block:24px 130px}
+.wrap{max-width:720px;margin-inline:auto;display:flex;flex-direction:column;gap:20px;min-width:0}
+h1,h2,h3,p,ul{margin:0}
+ul{padding:0;list-style:none}
+mark{background:linear-gradient(transparent 52%,var(--hl) 52%);color:inherit;padding:0 .12em}
+.kicker{font-size:.78rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+
+/* header */
+header.top{display:flex;flex-direction:column;gap:10px}
+h1{font:800 clamp(2rem,7vw,2.8rem)/1.05 var(--font-display);text-wrap:balance;letter-spacing:-.01em}
+.lede{color:var(--muted);font-weight:600}
+.how{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+.how li{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 12px;font-size:.92rem;font-weight:600;flex:1 1 200px;min-width:0}
+.how b{font-family:var(--font-display);color:var(--accent)}
+
+.jump{display:flex;flex-wrap:wrap;gap:6px}
+.jump button{min-width:44px;min-height:36px;padding:4px 10px;border-radius:8px;border:1.5px solid var(--line);background:var(--card);color:var(--ink);font:800 .85rem var(--font-display);cursor:pointer}
+.jump button.ok{background:var(--ok-soft);border-color:var(--ok);color:var(--ok)}
+.jump button.todo{background:var(--bad-soft);border-color:var(--bad);color:var(--bad)}
+button:focus-visible,textarea:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+
+/* summary */
+.summary{background:var(--card);border:1.5px solid var(--accent);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:12px}
+.label{font-size:.75rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.sum-top{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-between;align-items:flex-end}
+.big{font:800 3.2rem/1 var(--font-display);font-variant-numeric:tabular-nums}
+.big .of{font-size:1.5rem;color:var(--muted)}
+.rating{display:inline-block;margin-top:8px;padding:4px 12px;border-radius:999px;border:1.5px solid var(--line);font:800 1rem var(--font-display)}
+.rating.r-excellent{background:var(--ok-soft);border-color:var(--ok);color:var(--ok)}
+.rating.r-passed{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
+.rating.r-review{background:var(--redo-wash);border-color:var(--hl);color:var(--ink)}
+.rtag{font-weight:800}
+.rtag.r-excellent{color:var(--ok)}
+.rtag.r-passed{color:var(--accent)}
+.sum-meta{display:flex;flex-direction:column;gap:2px;font-weight:600;font-size:.95rem}
+.sum-meta b{font-variant-numeric:tabular-nums}
+.pips{display:inline-flex;gap:4px;vertical-align:middle;margin-right:4px}
+.pip{width:12px;height:12px;border-radius:50%;border:2px solid var(--accent)}
+.pip.on{background:var(--accent)}
+.meter{height:10px;border-radius:999px;background:var(--line);overflow:hidden}
+.meter i{display:block;height:100%;width:0;background:var(--accent);border-radius:999px;transition:width .4s}
+.msg{font-weight:700}
+.weak ul{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.weak button{min-height:40px;padding:6px 12px;border-radius:10px;border:1.5px solid var(--bad);background:var(--bad-soft);color:var(--bad);font:700 .9rem var(--font-body);cursor:pointer;text-align:left}
+.weak button b{font-variant-numeric:tabular-nums}
+
+/* chapters and activities */
+main{display:flex;flex-direction:column;gap:20px;min-width:0}
+.chapter{display:flex;flex-direction:column;gap:4px;padding-top:12px}
+h2{font:800 1.7rem/1.15 var(--font-display);text-wrap:balance}
+.chtopics{color:var(--muted);font-weight:600}
+.act{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;scroll-margin-top:16px}
+.act-head{display:flex;gap:12px;align-items:center;padding:14px 16px}
+.code{flex:none;min-width:46px;height:40px;padding-inline:8px;border-radius:10px;background:var(--accent);color:var(--accent-ink);font:800 1.1rem var(--font-display);display:grid;place-items:center}
+.act-titles{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+h3{font:800 1.15rem/1.2 var(--font-display)}
+.topic{font-size:.9rem;color:var(--muted);font-weight:600}
+.topic .lbl{font-size:.7rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;margin-right:4px}
+.topic mark{color:var(--ink);font-weight:800}
+.sec-score{flex:none;font:800 .95rem var(--font-display);font-variant-numeric:tabular-nums;color:var(--muted);text-align:right}
+.instr{padding:0 16px 12px;font-weight:600}
+.hint{margin:0 16px 12px;padding:10px 12px;border-radius:10px;background:var(--redo-wash);border:1.5px dashed var(--hl);font-weight:600;font-size:.95rem}
+.hint b{font-weight:800}
+.diary{margin:0 16px 12px;padding:12px 14px;border-radius:10px;background:var(--accent-soft);font-weight:600}
+.qs{display:flex;flex-direction:column}
+
+/* question rows */
+.q{display:grid;gap:10px;padding:14px 16px;border-top:1px solid var(--line);scroll-margin-top:16px;min-width:0}
+.q[data-st="right"]{background:var(--ok-wash)}
+.q[data-st="wrong"]{background:var(--bad-wash)}
+.q[data-st="redo"]{background:var(--redo-wash)}
+.q-head{display:grid;grid-template-columns:28px minmax(0,1fr);column-gap:10px;row-gap:4px;align-items:start}
+.num{width:28px;height:28px;border-radius:50%;background:var(--accent-soft);color:var(--accent);font:800 .85rem var(--font-display);display:grid;place-items:center}
+.prompt{font-weight:700;font-size:1.05rem;overflow-wrap:anywhere}
+.tag{grid-column:2;justify-self:start;font-size:.72rem;font-weight:800;letter-spacing:.04em;padding:2px 9px;border-radius:999px;background:var(--accent-soft);color:var(--accent)}
+.blank{display:inline-block;min-width:3.4em;padding:0 .3em;border-bottom:2.5px solid var(--accent);color:var(--accent);font-weight:800;text-align:center}
+.blank.ok{color:var(--ok);border-color:var(--ok)}
+.blank.bad{color:var(--bad);border-color:var(--bad)}
+.opts{display:flex;flex-wrap:wrap;gap:8px;padding-left:38px}
+.opts.stack{flex-direction:column;align-items:stretch}
+.opt{position:relative;display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:8px 16px;border:1.5px solid var(--line);border-radius:999px;background:var(--card);color:var(--ink);font:700 1rem/1.25 var(--font-body);cursor:pointer;transition:background .12s,border-color .12s;min-width:0}
+.opt input{position:absolute;inset:0;width:100%;height:100%;opacity:0;margin:0;cursor:inherit}
+.opt span{min-width:0;overflow-wrap:anywhere}
+.opts.stack .opt{border-radius:12px;justify-content:flex-start;text-align:left}
+.opt:hover:not(.dis){background:var(--accent-soft);border-color:var(--accent)}
+.opt:focus-within{outline:3px solid var(--accent);outline-offset:2px}
+.opt.on{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.opt.ok{background:var(--ok-soft);border-color:var(--ok);color:var(--ok)}
+.opt.bad{background:var(--bad-soft);border-color:var(--bad);color:var(--bad)}
+.opt.rev{border-style:dashed;border-color:var(--ok);color:var(--ok)}
+.opt.ok::after,.opt.rev::after{content:"\2713";font-weight:800}
+.opt.bad::after{content:"\2715";font-weight:800}
+.opt.dis{cursor:default}
+.fb{padding-left:38px;font-weight:700;font-size:.92rem}
+.fb:empty{display:none}
+.q[data-st="right"] .fb{color:var(--ok)}
+.q[data-st="wrong"] .fb{color:var(--bad)}
+.q[data-st="redo"] .fb{color:var(--muted)}
+
+/* writing card */
+.write{display:flex;flex-direction:column;gap:12px;padding:0 16px 16px}
+textarea{width:100%;min-height:150px;padding:12px;border:1.5px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);font:600 1rem/1.5 var(--font-body);resize:vertical}
+.checks{border:0;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.checks legend{padding:0;margin-bottom:6px;font-weight:800}
+.checks label{display:flex;gap:10px;align-items:flex-start;font-weight:600;min-height:32px}
+.checks input{width:20px;height:20px;margin:2px 0 0;accent-color:var(--accent);flex:none}
+
+/* action bar */
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:5;background:var(--card);border-top:1px solid var(--line);padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px))}
+.bar-in{max-width:720px;margin-inline:auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px}
+.bar-msg{flex:1 1 180px;min-width:0;font-weight:700;font-variant-numeric:tabular-nums}
+.go{flex:0 0 auto;min-height:46px;padding:10px 20px;border:0;border-radius:12px;background:var(--accent);color:var(--accent-ink);font:800 1rem var(--font-display);cursor:pointer}
+.go:disabled{opacity:.4;cursor:not-allowed}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@media (max-width:480px){.opts{padding-left:0}.fb{padding-left:0}.big{font-size:2.6rem}}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <p class="kicker">Class 5A · English · Exam on Friday</p>
+    <h1>Eva's <mark>Unit 1</mark> Review</h1>
+    <p class="lede">Be considerate: Chapter 1 Be a good citizen, Chapter 2 Be a good friend</p>
+    <ul class="how">
+      <li><b>1.</b> Tap an answer for every question.</li>
+      <li><b>2.</b> Press Check to see your score out of <span id="howTotal">62</span>.</li>
+      <li><b>3.</b> Fix your wrong answers. You get <b>2 redo chances</b>.</li>
+    </ul>
+  </header>
+
+  <nav class="jump" id="jump" aria-label="Jump to an activity"></nav>
+
+  <section id="summary" class="summary" hidden>
+    <div class="sum-top">
+      <div>
+        <p class="label">Your score</p>
+        <p class="big"><span id="score">0</span><span class="of"> / <span id="total">62</span></span></p>
+        <p class="rating" id="rating"></p>
+      </div>
+      <div class="sum-meta">
+        <p>First try: <b id="first">0</b> <span class="rtag" id="firstRate"></span></p>
+        <p>Redo chances used: <span class="pips" id="pips"><span class="pip"></span><span class="pip"></span></span><b id="used">0 of 2</b></p>
+      </div>
+    </div>
+    <div class="meter" id="meter" role="img" aria-label="Score"><i id="fill"></i></div>
+    <p class="msg" id="msg"></p>
+    <div class="weak" id="weak" hidden>
+      <p class="label">Practise these topics</p>
+      <ul id="weakList"></ul>
+    </div>
+  </section>
+
+  <main id="main"></main>
+</div>
+
+<div class="bar">
+  <div class="bar-in">
+    <p class="bar-msg" id="barMsg"></p>
+    <button class="go" id="go" type="button">Check my answers</button>
+  </div>
+</div>
+
+<script>
+(function(){
+'use strict';
+
+var TF=['True','False'], SH=['should',"shouldn't"], PREP=['with','to','of'], DEG=['so','very','really','a bit','a little'];
+
+var CH={
+  1:['Chapter 1','Be a good citizen','Adverbs of manner · should / shouldn’t'],
+  2:['Chapter 2','Be a good friend','Verbs + prepositions · Adverbs of degree · Diary writing']
+};
+
+var S=[
+ {code:'1A',ch:1,title:'Make the adverb',topic:'Adverbs of manner',page:'p.8',tag:'Adverb: add -ly',
+  instr:'Make the adverb from each adjective.',
+  hint:'Add -ly to the adjective. If it ends in -y, change y to -ily (tidy → tidily). Some adverbs do not change. good → well.',
+  items:[
+   ['careful → {}','carefully',['carefully','carefuly','carefulily']],
+   ['kind → {}','kindly',['kindly','kindily','kindy']],
+   ['patient → {}','patiently',['patiently','patientily','patienly']],
+   ['polite → {}','politely',['politely','politly','politeily']],
+   ['quiet → {}','quietly',['quietly','quietely','quiety']],
+   ['loud → {}','loudly',['loudly','loudily','loudy']],
+   ['soft → {}','softly',['softly','softily','softy']],
+   ['easy → {}','easily',['easily','easyly','easyily'],'Adverb: y → ily'],
+   ['tidy → {}','tidily',['tidily','tidyly','tidly'],'Adverb: y → ily'],
+   ['angry → {}','angrily',['angrily','angryly','angriliy'],'Adverb: y → ily']
+  ]},
+ {code:'1B',ch:1,title:'Circle the correct word',topic:'Adverbs of manner',page:'p.8',tag:'Adverb of manner',fixed:true,
+  instr:'Circle the correct word. Tap the one that fits.',
+  hint:'Adverbs describe verbs. They tell us how we do something. Some adverbs do not change (early, late, fast, hard). good → well.',
+  items:[
+   ['We should speak {} in the library.','softly',['soft','softly']],
+   ["We shouldn't eat {} in the cinema.",'noisily',['noisy','noisily']],
+   ['We should dress {} for school.','tidily',['tidy','tidily'],'Adverb: y → ily'],
+   ['We should work {} for our exams.','hard',['hard','hardly'],'Adverb: no change (hard)'],
+   ["We shouldn't arrive {} at the cinema.",'late',['late','lately'],'Adverb: no change (late)'],
+   ['Dan is a good player. He plays {}.','well',['good','well'],'Special: good → well'],
+   ['We should wait {} in a queue.','patiently',['patient','patiently']],
+   ["Don't shout at your parents. Talk to them {}.",'politely',['polite','politely']]
+  ]},
+ {code:'1C',ch:1,title:"Write should or shouldn't",topic:"should / shouldn't",page:'p.10',tag:"should / shouldn't",fixed:true,
+  instr:"Choose should or shouldn't.",
+  hint:"Use should for the right thing to do. Use shouldn't (should not) for the wrong thing to do.",
+  items:[
+   ['We {} sit properly in the cinema.','should',SH],
+   ['We {} eat noisily in the cinema.',"shouldn't",SH],
+   ['We {} play with our utensils in the restaurant.',"shouldn't",SH],
+   ['We {} put our feet on the seats on the bus.',"shouldn't",SH],
+   ['We {} offer our seats to people in need.','should',SH],
+   ['You {} slam doors or play music loudly at home.',"shouldn't",SH],
+   ['You {} eat slowly in a restaurant.','should',SH]
+  ]},
+ {code:'1D',ch:1,title:'Put the words in order',topic:"should / shouldn't + adverbs",page:'p.10',tag:'Word order',
+  instr:'Put the words in order. Pick the correct sentence.',
+  hint:'Pattern: We + should / shouldn’t + verb + adverb. Do not change the verb after should.',
+  items:[
+   ['should / We / properly / sit','We should sit properly.',['We should sit properly.','We properly should sit.','We sit should properly.']],
+   ["shouldn't / noisily / eat / We","We shouldn't eat noisily.",["We shouldn't eat noisily.","We noisily shouldn't eat.","We eat shouldn't noisily."]],
+   ['We / tidily / dress / should','We should dress tidily.',['We should dress tidily.','We tidily should dress.','We dress should tidily.']],
+   ['should / to / politely / talk / We / our parents','We should talk to our parents politely.',['We should talk to our parents politely.','We talk should to our parents politely.','We should to talk our parents politely.']]
+  ]},
+ {code:'1E',ch:1,title:'True or False?',topic:'Guide to good manners',page:'p.5',tag:'Good manners',fixed:true,
+  instr:'Read the “Guide to good manners” on p.5 again, then choose True or False.',
+  hint:'Open your book to p.5 and read the Guide to good manners again.',
+  items:[
+   ['At home, you should turn down the TV when someone is on the phone.','True',TF],
+   ['In a restaurant, you should gobble up your food.','False',TF],
+   ['On a bus or train, you should put your feet on the seats.','False',TF],
+   ['On public transport, you should offer your seat to people in need.','True',TF],
+   ['Chewing with your mouth open is good table manners.','False',TF]
+  ]},
+
+ {code:'2A',ch:2,title:'Write the missing preposition',topic:'Verbs + prepositions',page:'pp.19–20',tag:'Verb + preposition',fixed:true,
+  instr:'Choose the missing preposition: with, to or of.',
+  hint:'Learn the pairs: quarrel with, lie to, be nice to, say sorry to, be jealous of, discuss … with, help … with, get on with.',
+  items:[
+   ['Friends shouldn’t quarrel {} one another.','with',PREP],
+   ['Don’t be jealous {} your friend.','of',PREP],
+   ['We should say sorry {} our friend after a quarrel.','to',PREP],
+   ['I think Marcus should discuss the problem {} Jason.','with',PREP],
+   ['Friends shouldn’t lie {} one another.','to',PREP],
+   ['We should be nice {} our friends.','to',PREP],
+   ['Chris wants me to help him {} his Maths.','with',PREP],
+   ['I think I can get on {} Dan after all.','with',PREP]
+  ]},
+ {code:'2B',ch:2,title:'Complete the sentences',topic:'Adverbs of degree',page:'p.22',tag:'Adverb of degree',fixed:true,
+  instr:'Complete the sentences with so, very, really, a bit or a little.',
+  hint:'so / very / really = a strong feeling. a bit / a little = a small feeling. They go before the adjective.',
+  items:[
+   ['I felt {} embarrassed. I wanted to run away. (strong feeling)',['so','very','really'],DEG,'Adverb of degree: strong'],
+   ['I was {} upset because my friend copied my homework. (small feeling)',['a bit','a little'],DEG,'Adverb of degree: small'],
+   ['Jason cheated in his Maths exam. I felt {} shocked. (strong feeling)',['so','very','really'],DEG,'Adverb of degree: strong'],
+   ['I was {} nervous before the test, but I felt OK after that. (small feeling)',['a bit','a little'],DEG,'Adverb of degree: small']
+  ]},
+ {code:'2C',ch:2,title:'Write the past tense',topic:'Past tense (diary writing)',page:'p.24',tag:'Past tense',
+  instr:'Pick the past tense of each verb.',
+  hint:'Use the past tense for past events and feelings. Regular verbs add -ed. Irregular verbs change (feel → felt).',
+  items:[
+   ['feel → {}','felt',['felt','feeled','fell'],'Irregular past tense'],
+   ['say → {}','said',['said','sayed','sade'],'Irregular past tense'],
+   ['go → {}','went',['went','goed','gone'],'Irregular past tense'],
+   ['come → {}','came',['came','comed','come'],'Irregular past tense'],
+   ['talk → {}','talked',['talked','talkt','talken'],'Regular past tense (-ed)'],
+   ['think → {}','thought',['thought','thinked','thoght'],'Irregular past tense'],
+   ['know → {}','knew',['knew','knowed','known'],'Irregular past tense'],
+   ['want → {}','wanted',['wanted','wantd','wont'],'Regular past tense (-ed)'],
+   ['laugh → {}','laughed',['laughed','laughted','laught'],'Regular past tense (-ed)'],
+   ['quarrel → {}','quarrelled',['quarrelled','quarrelt','quarrelen'],'Regular past tense (-ed)']
+  ]},
+ {code:'2D',ch:2,title:'Read the diary entry',topic:'Adverbs and adjectives',page:'pp.24–25',tag:'Adverbs and adjectives',
+  instr:'Read the diary entry, then tap the words that answer each question.',
+  intro:'<p class="diary"><b>Thursday 15th October.</b> What a terrible day! I quarrelled with Leo in the playground. He shouted at me angrily and I spoke rudely to him. I felt so embarrassed and sad. The next day, he said sorry politely and I smiled happily. Now we are friends again!</p>',
+  hint:'Adverbs of manner (-ly) describe actions. Adjectives describe how someone feels, or describe a thing.',
+  items:[
+   {p:'Tap the 4 adverbs that describe actions.',c:['angrily','rudely','politely','happily'],o:['angrily','rudely','politely','happily','embarrassed','sad','terrible','playground'],t:'Adverbs (actions)',multi:true},
+   {p:'Tap the 2 adjectives that describe how I felt.',c:['embarrassed','sad'],o:['embarrassed','sad','terrible','happily','friends','angrily'],t:'Adjectives (feelings)',multi:true}
+  ]},
+ {code:'2E',ch:2,title:'Questions about Paul’s diary',topic:'Reading: Paul’s diary',page:'pp.16–17',tag:'Reading: Paul’s diary',
+  instr:'Answer the questions about Paul’s diary (pp.16–17).',
+  hint:'Read Paul’s diary on pp.16–17 again. Look at the days and the feelings.',
+  items:[
+   ['Which two friends both scored a goal on Sunday 5th October?','Paul and Ryan',['Paul and Ryan','Paul and Dan','Ryan and Dan','Dan and Coach Tam']],
+   ['Why did Paul feel left out on Tuesday 7th October? Paul felt left out because {}','Ryan and Dan talked about their favourite Italian football players and got on very well.',['Ryan and Dan talked about their favourite Italian football players and got on very well.','Coach Tam did not pick him for the team.','Ryan and Dan did not want to play football.']],
+   ['What did Coach Tam remind the team after the match? He reminded them that {}','they should always work as a team.',['they should always work as a team.','they should score more goals.','they should arrive at the match early.']],
+   ['How does Paul feel about Dan at the end? He thinks {}','he can get on with Dan after all.',['he can get on with Dan after all.','he will never get on with Dan.','Dan is jealous of him.']]
+  ],
+  after:'write'}
+];
+
+/* ---------- helpers ---------- */
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+function hash(s){var h=2166136261;for(var i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619);}return h>>>0;}
+function rng(a){return function(){a|=0;a=a+0x6D2B79F5|0;var t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+function shuffle(arr,seed){var r=rng(seed),a=arr.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(r()*(i+1));var x=a[i];a[i]=a[j];a[j]=x;}return a;}
+function fmt(it){var c=it.correct;if(it.multi||c.length===1)return c.join(c.length>1?', ':'');return c.slice(0,-1).join(', ')+' or '+c[c.length-1];}
+
+/* ---------- build data ---------- */
+var items=[], byId={};
+S.forEach(function(sec){
+  sec.items=sec.items.map(function(raw,i){
+    var o=Array.isArray(raw)?{p:raw[0],c:raw[1],o:raw[2],t:raw[3]}:raw;
+    var correct=Array.isArray(o.c)?o.c:[o.c];
+    var opts=sec.fixed?o.o:shuffle(o.o,hash(sec.code+o.p));
+    var stack=opts.some(function(x){return x.length>22;});
+    var it={id:sec.code+'-'+(i+1),sec:sec,n:i+1,prompt:o.p,correct:correct,opts:opts,tag:o.t||sec.tag,multi:!!o.multi,stack:stack,
+            noFill:stack||!!o.multi||o.p.indexOf('{}')<0};
+    items.push(it);byId[it.id]=it;return it;
+  });
+});
+var TOTAL=items.length;
+
+var WRITE='<section class="act" id="act-2F"><header class="act-head"><span class="code">2F</span><div class="act-titles"><h3>Write your own diary entry</h3><p class="topic"><span class="lbl">Topic</span> <mark>Diary writing</mark> · p.24</p></div><span class="sec-score">Not scored</span></header>'+
+ '<p class="instr">Write about a quarrel in your notebook, or type it here. Plan with the 5W1H mind map on p.24 first.</p>'+
+ '<div class="write"><label class="sr" for="diary">My diary entry</label>'+
+ '<textarea id="diary" placeholder="Today I quarrelled with ... at ... We quarrelled because ... I felt so ... because ... I said, “...” loudly. In the end, ... said sorry to me. Now we are ... again. From this experience I learnt that friends should ..."></textarea>'+
+ '<fieldset class="checks"><legend>Tick when your diary has:</legend>'+
+ '<label for="c1"><input type="checkbox" id="c1"><span>Past tense (quarrelled, felt, said)</span></label>'+
+ '<label for="c2"><input type="checkbox" id="c2"><span>One feeling with so / very / really</span></label>'+
+ '<label for="c3"><input type="checkbox" id="c3"><span>One -ly adverb for an action (loudly, angrily)</span></label>'+
+ '<label for="c4"><input type="checkbox" id="c4"><span>The sentence “friends should …”</span></label>'+
+ '</fieldset></div></section>';
+
+function promptHTML(it){
+  var p=esc(it.prompt);
+  if(it.prompt.indexOf('{}')<0)return p;
+  return p.replace('{}',it.noFill?'…':'<span class="blank">______</span>');
+}
+function rowHTML(it){
+  var type=it.multi?'checkbox':'radio';
+  var opts=it.opts.map(function(t,i){
+    return '<label class="opt"><input type="'+type+'" name="'+it.id+'" value="'+i+'"><span>'+esc(t)+'</span></label>';
+  }).join('');
+  return '<div class="q" data-id="'+it.id+'" data-st="open" role="group" aria-labelledby="p-'+it.id+'">'+
+    '<div class="q-head"><span class="num">'+it.n+'</span><p class="prompt" id="p-'+it.id+'">'+promptHTML(it)+'</p><span class="tag">'+esc(it.tag)+'</span></div>'+
+    '<div class="opts'+(it.stack?' stack':'')+'">'+opts+'</div><p class="fb"></p></div>';
+}
+
+var main=document.getElementById('main'), jump=document.getElementById('jump'), html='', curCh=0, jhtml='';
+S.forEach(function(sec){
+  if(sec.ch!==curCh){curCh=sec.ch;
+    html+='<div class="chapter"><p class="kicker">'+CH[curCh][0]+'</p><h2>'+esc(CH[curCh][1])+'</h2><p class="chtopics">'+esc(CH[curCh][2])+'</p></div>';}
+  html+='<section class="act" id="act-'+sec.code+'"><header class="act-head"><span class="code">'+sec.code+'</span>'+
+    '<div class="act-titles"><h3>'+esc(sec.title)+'</h3><p class="topic"><span class="lbl">Topic</span> <mark>'+esc(sec.topic)+'</mark> · '+esc(sec.page)+'</p></div>'+
+    '<span class="sec-score"></span></header><p class="instr">'+esc(sec.instr)+'</p>'+(sec.intro||'')+
+    '<p class="hint" hidden><b>Hint:</b> '+esc(sec.hint)+'</p>'+
+    '<div class="qs">'+sec.items.map(rowHTML).join('')+'</div></section>';
+  if(sec.after==='write')html+=WRITE;
+  jhtml+='<button type="button" data-go="'+sec.code+'" id="j-'+sec.code+'">'+sec.code+'</button>';
+});
+jhtml+='<button type="button" data-go="2F" id="j-2F">2F</button>';
+main.innerHTML=html;
+jump.innerHTML=jhtml;
+
+var ref={};
+items.forEach(function(it){
+  var root=main.querySelector('.q[data-id="'+it.id+'"]');
+  ref[it.id]={root:root,labels:[].slice.call(root.querySelectorAll('.opt')),inputs:[].slice.call(root.querySelectorAll('input')),
+    blank:root.querySelector('.blank'),fb:root.querySelector('.fb')};
+});
+S.forEach(function(sec){
+  var el=document.getElementById('act-'+sec.code);
+  sec.el={score:el.querySelector('.sec-score'),hint:el.querySelector('.hint'),jump:document.getElementById('j-'+sec.code),root:el};
+});
+
+/* ---------- state ---------- */
+var state={attempt:0,phase:'answer',first:0,sel:{},st:{}};
+var rm=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+function go(el,block){if(el)el.scrollIntoView({behavior:rm?'auto':'smooth',block:block||'start'});}
+
+function reset(){
+  state.attempt=0;state.phase='answer';state.first=0;
+  items.forEach(function(it){state.sel[it.id]=it.multi?[]:null;state.st[it.id]='open';});
+  update();
+}
+function editable(it){return (state.st[it.id]==='open'&&state.phase==='answer')||state.st[it.id]==='redo';}
+function answered(it){var s=state.sel[it.id];return it.multi?s.length>0:s!==null;}
+function isRight(it){
+  var s=state.sel[it.id];
+  if(it.multi)return s.length===it.correct.length&&it.correct.every(function(c){return s.indexOf(c)>=0;});
+  return s!==null&&it.correct.indexOf(s)>=0;
+}
+
+function check(){
+  items.forEach(function(it){if(editable(it))state.st[it.id]=isRight(it)?'right':'wrong';});
+  state.attempt++;
+  var wrong=items.filter(function(it){return state.st[it.id]==='wrong';}).length;
+  if(state.attempt===1)state.first=TOTAL-wrong;
+  state.phase=(wrong===0||state.attempt>=3)?'final':'review';
+  update();
+  go(document.getElementById('summary'),'start');
+}
+function redo(){
+  items.forEach(function(it){if(state.st[it.id]==='wrong'){state.sel[it.id]=it.multi?[]:null;state.st[it.id]='redo';}});
+  state.phase='redo';
+  update();
+  var first=items.filter(function(it){return state.st[it.id]==='redo';})[0];
+  if(first)go(ref[first.id].root,'center');
+}
+
+/* ---------- render ---------- */
+function update(){
+  items.forEach(function(it){
+    var r=ref[it.id],st=state.st[it.id],ed=editable(it),sel=state.sel[it.id],fin=state.phase==='final';
+    r.root.dataset.st=st;
+    r.labels.forEach(function(lab,i){
+      var t=it.opts[i],chosen=it.multi?sel.indexOf(t)>=0:sel===t,ok=it.correct.indexOf(t)>=0,cls='opt';
+      if(chosen&&(st==='right'||st==='wrong'))cls+=ok?' ok':' bad';
+      else if(chosen)cls+=' on';
+      if(st==='wrong'&&fin&&ok&&!chosen)cls+=' rev';
+      if(!ed)cls+=' dis';
+      lab.className=cls;
+      r.inputs[i].checked=chosen;
+      r.inputs[i].disabled=!ed;
+    });
+    if(r.blank){
+      r.blank.textContent=sel||'______';
+      r.blank.className='blank'+(st==='right'?' ok':(st==='wrong'?' bad':''));
+    }
+    var fb='';
+    if(st==='right')fb='✓ Correct';
+    else if(st==='wrong')fb=fin?'✕ Answer: '+fmt(it):'✕ Not quite. Press “Redo wrong answers” to try again.';
+    else if(st==='redo')fb='Try again.';
+    r.fb.textContent=fb;
+  });
+
+  var right=items.filter(function(it){return state.st[it.id]==='right';}).length;
+  var pending=items.filter(function(it){return state.st[it.id]==='wrong'||state.st[it.id]==='redo';});
+
+  S.forEach(function(sec){
+    var rs=sec.items.filter(function(it){return state.st[it.id]==='right';}).length;
+    var need=sec.items.some(function(it){return state.st[it.id]==='wrong'||state.st[it.id]==='redo';});
+    sec.el.score.textContent=state.attempt>=1?rs+' / '+sec.items.length:sec.items.length+' pts';
+    sec.el.hint.hidden=!((state.phase==='review'||state.phase==='redo')&&need);
+    sec.el.jump.className=state.attempt>=1?(need?'todo':'ok'):'';
+  });
+
+  /* summary */
+  var sum=document.getElementById('summary');
+  sum.hidden=state.attempt<1;
+  document.getElementById('score').textContent=right;
+  document.getElementById('total').textContent=TOTAL;
+  document.getElementById('first').textContent=state.first+' / '+TOTAL;
+  function rate(n){var p=n/TOTAL;return p>=0.9?['Excellent','r-excellent']:(p>=0.7?['Passed','r-passed']:['Need more review','r-review']);}
+  var rNow=rate(right),rFirst=rate(state.first);
+  var rEl=document.getElementById('rating');
+  rEl.textContent=rNow[0];
+  rEl.className='rating '+rNow[1];
+  var rf=document.getElementById('firstRate');
+  rf.textContent='· '+rFirst[0];
+  rf.className='rtag '+rFirst[1];
+  var used=state.phase==='redo'?state.attempt:Math.max(0,state.attempt-1);
+  document.getElementById('used').textContent=used+' of 2';
+  [].forEach.call(document.getElementById('pips').children,function(p,i){p.className='pip'+(i<used?' on':'');});
+  document.getElementById('fill').style.width=(right/TOTAL*100)+'%';
+  document.getElementById('meter').setAttribute('aria-label','Score '+right+' out of '+TOTAL);
+  var pct=right/TOTAL,msg='';
+  if(state.phase==='final'){
+    if(pending.length===0)msg='Perfect score! You are ready for Friday.';
+    else if(pct>=0.85)msg='Great work. Study the answers shown in green and you are nearly there.';
+    else if(pct>=0.65)msg='Good effort. Read the Grammar Review for the topics below, then start again.';
+    else msg='Keep going. Read the Grammar Review for the topics below, then start again.';
+  }else if(state.phase==='review')msg='Look at the red answers. Read the hints, then press Redo.';
+  else if(state.phase==='redo')msg='Fix the yellow questions, then press Check again.';
+  document.getElementById('msg').textContent=msg;
+
+  var weak=[];
+  S.forEach(function(sec){
+    var n=sec.items.filter(function(it){return state.st[it.id]==='wrong'||state.st[it.id]==='redo';}).length;
+    if(n)weak.push('<li><button type="button" data-go="'+sec.code+'">'+sec.code+' · '+esc(sec.topic)+' · <b>'+n+' to fix</b></button></li>');
+  });
+  document.getElementById('weak').hidden=weak.length===0||state.attempt<1;
+  document.getElementById('weakList').innerHTML=weak.join('');
+
+  /* bar */
+  var bm=document.getElementById('barMsg'), btn=document.getElementById('go');
+  var ed=items.filter(editable), done=ed.filter(answered).length;
+  if(state.phase==='answer'){
+    bm.textContent=done+' of '+ed.length+' answered';
+    btn.textContent='Check my answers';btn.disabled=done<ed.length;
+  }else if(state.phase==='review'){
+    var left=3-state.attempt;
+    bm.textContent=pending.length+' wrong · '+left+(left===1?' redo chance':' redo chances')+' left';
+    btn.textContent='Redo wrong answers';btn.disabled=false;
+  }else if(state.phase==='redo'){
+    bm.textContent='Redo chance '+state.attempt+' of 2 · '+done+' of '+ed.length+' done';
+    btn.textContent='Check again';btn.disabled=done<ed.length;
+  }else{
+    bm.textContent='Final score '+right+' / '+TOTAL;
+    btn.textContent='Start again';btn.disabled=false;
+  }
+}
+
+/* ---------- events ---------- */
+main.addEventListener('change',function(e){
+  var inp=e.target;
+  if(!inp.matches||!inp.matches('.q input'))return;
+  var it=byId[inp.closest('.q').dataset.id];
+  if(!editable(it)){update();return;}
+  var txt=it.opts[+inp.value];
+  if(it.multi){
+    var a=state.sel[it.id],k=a.indexOf(txt);
+    if(inp.checked){if(k<0)a.push(txt);}else if(k>=0)a.splice(k,1);
+  }else state.sel[it.id]=txt;
+  update();
+});
+document.getElementById('go').addEventListener('click',function(){
+  if(state.phase==='answer'||state.phase==='redo')check();
+  else if(state.phase==='review')redo();
+  else{reset();window.scrollTo({top:0,behavior:rm?'auto':'smooth'});}
+});
+function onJump(e){
+  var b=e.target.closest&&e.target.closest('[data-go]');
+  if(!b)return;
+  go(document.getElementById('act-'+b.dataset.go),'start');
+}
+jump.addEventListener('click',onJump);
+document.getElementById('weakList').addEventListener('click',onJump);
+
+document.getElementById('howTotal').textContent=TOTAL;
+reset();
+})();
+</script>
+
+</body></html>
